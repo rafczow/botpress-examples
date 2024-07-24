@@ -1,0 +1,23 @@
+/* Upload popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.popup-content {
+    background-color: #252525;
+    width: 300px;
+    padding: 20px;
+    margin: 100px auto;
+    border-radius: 5px;
+}
+.close {
+    float: right;
+    cursor: pointer;
+    color: #fff;
+    font-size: 3rem;
+}
