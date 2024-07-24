@@ -1,5 +1,5 @@
 /**
- * Upload popup navigation
+ * Upload functions
  */ 
 function openPopup() {
     document.getElementById("uploadPopup").style.display = "block";
@@ -13,7 +13,9 @@ function cancelUpload() {
     closePopup();
     window.botpressWebChat.sendPayload({
         type: 'trigger',
-        payload: { action: 'upload_canceled' }
+        payload: {
+            action: 'upload_canceled',
+        },
     });
 }
 
@@ -21,15 +23,28 @@ function uploadFile() {
     const fileInput = document.getElementById("fileInput");
     const file = fileInput.files[0];
     if (file) {
-        // Here you would typically send the file to a server
         console.log("Uploading file:", file.name);
-        // For this example, we'll just close the popup
-        closePopup();
+        // 1. Send the files to a server
+        // ...
 
+        // 2. on success send payload and images
+        // foreach image
+        window.botpressWebChat.sendPayload({
+            "type": "image",
+            "title": "ducky duck duck",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Mallard2.jpg",
+            "typing": true
+        });
+        // once done
         window.botpressWebChat.sendPayload({
             type: 'trigger',
-            payload: { action: 'upload_success' }
+            payload: {
+                action: 'upload_success',
+            },
         });
+
+        // 3. close popup
+        closePopup();
     } else {
         alert("Please select a file to upload.");
     }
@@ -47,9 +62,3 @@ window.botpressWebChat.onEvent(event => {
       }
     }
 }, ['TRIGGER']);
-
-
-
-
-// next step:
-https://youtu.be/9U3jy-FidJ4?t=498
